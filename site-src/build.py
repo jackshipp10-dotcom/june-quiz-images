@@ -41,8 +41,9 @@ def page(path, title, desc, body, current=None, payhip=False, form=False, noinde
     navhtml = "".join(f'<a href="{u}"{" aria-current=\"page\"" if current == u else ""}>{n}</a>' for n, u in nav)
     social = "".join(f'<a href="{s["url"]}" rel="me noopener" target="_blank">{s["name"]}</a>' for s in SITE["social"])
     scripts = ""
-    if payhip:
-        scripts += '<script src="https://payhip.com/payhip.js" defer></script>'
+    head_js = '<script type="text/javascript" src="https://payhip.com/payhip.js"></script>' if payhip else ""
+    if False:
+        pass
     if form:
         scripts += f"<script>{FORM_JS}</script>"
     doc = f"""<!doctype html>
@@ -69,6 +70,7 @@ def page(path, title, desc, body, current=None, payhip=False, form=False, noinde
 <link rel="preload" href="/assets/fonts/zilla-slab-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/work-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
+{head_js}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -116,7 +118,7 @@ def packets(medium):
 def buy_button(p):
     if p["platform"] == "payhip":
         c = p["payhip_code"]
-        return f'<a href="https://payhip.com/b/{c}" class="payhip-buy-button btn" data-theme="none" data-product="{c}">Buy</a>'
+        return f'<a href="https://payhip.com/b/{c}" class="payhip-buy-button btn" data-theme="none" data-product="{c}">Add to basket</a>'
     return f'<a href="{p["url"]}" class="btn" target="_blank" rel="noopener">Buy on Etsy</a>'
 
 
@@ -229,7 +231,7 @@ shop = f"""
 </section>
 <section class="section wrap">
   <div class="notice"><p><b>Not sure where to start?</b> My free quiz tells you what to grow in your space, and which planner suits you.</p><a class="btn" href="{quiz('shop','quiz')}">Take the free quiz</a></div>
-  <p class="foot-note" style="margin-top:14px">Checkout is handled securely by Payhip, which emails your download straight away. These are digital downloads, so nothing is posted, and your 14 day right to cancel ends once the download starts.</p>
+  <p class="foot-note" style="margin-top:14px">Add what you want to your basket, then check out once. Checkout is handled securely by Payhip, which emails your downloads straight away. These are digital downloads, so nothing is posted, and your 14 day right to cancel ends once the download starts.</p>
 </section>
 """
 page("shop/index.html", "Printable UK veg growing planners | Plot to Plate with June",

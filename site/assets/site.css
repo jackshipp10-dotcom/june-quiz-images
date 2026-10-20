@@ -221,3 +221,5 @@ section[id]{scroll-margin-top:72px}
   .spaces,.packets{max-width:none}
 }
 @media (min-width:760px){ .packets .pk img{aspect-ratio:4/3} }
+.buy .btn{white-space:nowrap}
+@media (max-width:599px){ .prod .buy{flex-wrap:wrap} .prod .buy .btn{flex:1 1 100%} }
