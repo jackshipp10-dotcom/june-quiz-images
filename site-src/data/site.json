@@ -11,9 +11,27 @@
   },
   "contact_email": "june@plottoplatejune.co.uk",
   "social": [
-    {"name": "TikTok", "url": "https://www.tiktok.com/@plottoplatejune"},
-    {"name": "Instagram", "url": "https://www.instagram.com/plottoplatejune"},
-    {"name": "Facebook", "url": "https://www.facebook.com/1420368811149385"},
-    {"name": "YouTube", "url": "https://www.youtube.com/channel/UC1bVDsqIYnrKo_AoTm29bSQ"}
-  ]
+    {
+      "name": "TikTok",
+      "url": "https://www.tiktok.com/@plottoplatejune"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/plottoplatejune"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/1420368811149385"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/channel/UC1bVDsqIYnrKo_AoTm29bSQ"
+    }
+  ],
+  "seller": {
+    "name": "Jack Shipp",
+    "trading_as": "Plot to Plate with June",
+    "address": "Putney Bridge Road, London, United Kingdom",
+    "_note": "Shown in the footer, privacy and shop pages (UK distance selling rules). Update when Jack moves or gets a virtual office address."
+  }
 }
