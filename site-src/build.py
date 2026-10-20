@@ -232,7 +232,7 @@ page("this-month/index.html", f"What to sow, plant and cook in {MONTH['month']} 
 shop = f"""
 <section class="page-hero wrap">
   <h1>My shop</h1>
-  <p>Simple planners written for UK gardens, windowsills and allotments. Instant download, print at home as often as you like.</p>
+  <p>Planners and printables written for UK gardens, windowsills and allotments. Instant download, print at home as often as you like.</p>
 </section>
 <section class="section wrap" aria-label="Products">
   <div class="shop-grid">{''.join(product_card(p, cls='shop-item', details=True, heading='h2') for p in PRODUCTS)}</div>

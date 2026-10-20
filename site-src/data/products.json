@@ -2,6 +2,23 @@
   "_how_to_add": "Add one object per product, in the order they should appear. platform 'payhip' shows an on page Buy button (needs payhip_code, the part after payhip.com/b/). platform 'etsy' shows 'Buy on Etsy' linking to url. image lives in site/img (portrait, about 560 wide). featured true puts it on the home page. For a sale, set price to the sale price and add was_price with the normal price (for example was_price £12); remove was_price and restore price when the sale ends, and make sure Payhip matches. The home page shows big covers for 2 featured products and switches to a swipe row at 3 or more.",
   "products": [
     {
+      "id": "gift-set",
+      "name": "The Gift Set",
+      "price": "£14.99",
+      "line": "A whole year of growing, to give",
+      "detail": [
+        "The Year Planner, print, fillable and tablet",
+        "The UK Sowing and Harvest Chart",
+        "June's Seed Tin Kit",
+        "A printable gift card from June"
+      ],
+      "image": "cover-gift-set.jpg",
+      "platform": "payhip",
+      "payhip_code": "GJ4wR",
+      "url": "https://payhip.com/b/GJ4wR",
+      "featured": true
+    },
+    {
       "id": "starter-planner",
       "name": "Starter Planner",
       "price": "£4.99",
@@ -35,6 +52,57 @@
       "payhip_code": "JR6dv",
       "url": "https://payhip.com/b/JR6dv",
       "featured": true
+    },
+    {
+      "id": "uk-chart",
+      "name": "UK Sowing Chart",
+      "price": "£3.95",
+      "line": "Every crop, every month, on one page",
+      "detail": [
+        "35 crops, set for UK gardens",
+        "Sow, plant out and pick, fortnight by fortnight",
+        "A seasonal dish for every month",
+        "A4 and A3, colour and low ink"
+      ],
+      "image": "cover-uk-chart.jpg",
+      "platform": "payhip",
+      "payhip_code": "B8NKk",
+      "url": "https://payhip.com/b/B8NKk",
+      "featured": false
+    },
+    {
+      "id": "seed-kit",
+      "name": "Seed Tin Kit",
+      "price": "£3.50",
+      "line": "Track your seeds, swap the spares",
+      "detail": [
+        "Seed inventory and blank seed cards",
+        "12 month dividers",
+        "Seed swap envelope and swap list",
+        "Labels for 32 crops"
+      ],
+      "image": "cover-seed-kit.jpg",
+      "platform": "payhip",
+      "payhip_code": "UGnch",
+      "url": "https://payhip.com/b/UGnch",
+      "featured": false
+    },
+    {
+      "id": "any-garden-chart",
+      "name": "Any Garden Chart",
+      "price": "£3.95",
+      "line": "For gardens outside the UK",
+      "detail": [
+        "Counted from your own last frost date",
+        "29 vegetables, salads and herbs",
+        "When to sow, plant out and pick",
+        "US Letter and A4, colour and low ink"
+      ],
+      "image": "cover-any-chart.jpg",
+      "platform": "payhip",
+      "payhip_code": "P2J3z",
+      "url": "https://payhip.com/b/P2J3z",
+      "featured": false
     }
   ]
 }
