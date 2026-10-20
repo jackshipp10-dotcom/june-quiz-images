@@ -1,0 +1,1 @@
+Felt & Patchwork promo videos (20 Oct 2026). engine.js + spec-<product>.js = the 15 s product video; core = block0 (H library) + first 200 lines of block2 (felt helpers) + engine.js. block1 = sound kit. run.js renders frames, audio and the 9:16 overlay; finish.sh makes the Etsy (silent, 14.9 s) and Reels/TikTok (9:16, sound) files. Gift Set uses explain_gift.js/score_gift.js.
