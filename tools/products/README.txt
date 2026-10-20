@@ -1,0 +1,1 @@
+Generators for the June digital products (Oct 2026). Fonts: Fraunces 600/700 and Figtree 400/500/600/700 converted from @fontsource woff to /tmp/claude-0/fonts/*.ttf. Run: python3 wallchart.py OUT; python3 seedkit.py OUT; python3 voucher.py OUT. mockups.py builds listing images from rendered pages.
