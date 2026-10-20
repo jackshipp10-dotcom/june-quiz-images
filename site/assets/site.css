@@ -207,3 +207,17 @@ section[id]{scroll-margin-top:72px}
   .shop-item ul{grid-column:1 / -1}
   .shop-item .buy{grid-column:1 / -1}
 }
+/* Desktop balance (20 Oct): month and planners columns end on the same line; videos span the full width */
+@media (min-width:760px){
+  .home-cols{grid-template-columns:1fr 1fr;align-items:stretch}
+  .home-cols>section{display:flex;flex-direction:column}
+  .home-cols .cards3{flex:1;max-width:none}
+  .home-cols .pcard{display:flex;flex-direction:column}
+  .home-cols .pcard img{flex:1;aspect-ratio:auto;min-height:150px;height:0}
+  .home-cols .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  .videos{max-width:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .videos img{aspect-ratio:4/5}
+  .grid2{max-width:none;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .spaces,.packets{max-width:none}
+}
+@media (min-width:760px){ .packets .pk img{aspect-ratio:4/3} }
