@@ -1,5 +1,5 @@
 {
-  "_how_to_add": "Add one object per product, in the order they should appear. platform 'payhip' shows an on page Buy button (needs payhip_code, the part after payhip.com/b/). platform 'etsy' shows 'Buy on Etsy' linking to url. image lives in site/img (portrait, about 560 wide). featured true puts it on the home page. The home page shows big covers for 2 featured products and switches to a swipe row at 3 or more.",
+  "_how_to_add": "Add one object per product, in the order they should appear. platform 'payhip' shows an on page Buy button (needs payhip_code, the part after payhip.com/b/). platform 'etsy' shows 'Buy on Etsy' linking to url. image lives in site/img (portrait, about 560 wide). featured true puts it on the home page. For a sale, set price to the sale price and add was_price with the normal price (for example was_price £12); remove was_price and restore price when the sale ends, and make sure Payhip matches. The home page shows big covers for 2 featured products and switches to a swipe row at 3 or more.",
   "products": [
     {
       "id": "starter-planner",

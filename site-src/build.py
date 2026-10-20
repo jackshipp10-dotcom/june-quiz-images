@@ -128,7 +128,15 @@ def product_card(p, cls="prod", details=False, heading="h3"):
         extra = "<ul>" + "".join(f"<li>{e(d)}</li>" for d in p["detail"]) + "</ul>"
     return (f'<article class="{cls}"><img src="/img/{p["image"]}" alt="" width="280" height="396" loading="lazy">'
             f'<{heading}>{e(p["name"])}</{heading}><p>{e(p["line"])}</p>{extra}'
-            f'<div class="buy"><span class="price">{e(p["price"])}</span>{buy_button(p)}</div></article>')
+            f'<div class="buy">{price_html(p)}{buy_button(p)}</div></article>')
+
+
+def price_html(p):
+    # Optional sale: set "was_price" in products.json (e.g. "£12") and "price" to the sale price.
+    if p.get("was_price"):
+        return (f'<span class="price"><s class="was" aria-label="was {e(p["was_price"])}">{e(p["was_price"])}</s> '
+                f'{e(p["price"])}</span>')
+    return f'<span class="price">{e(p["price"])}</span>'
 
 
 def calstrip():

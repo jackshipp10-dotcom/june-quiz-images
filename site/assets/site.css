@@ -225,3 +225,5 @@ section[id]{scroll-margin-top:72px}
 @media (max-width:599px){ .prod .buy{flex-wrap:wrap} .prod .buy .btn{flex:1 1 100%} }
 .signup{color-scheme:light}
 .signup input[type=checkbox]{accent-color:var(--red)}
+
+.price .was{font-weight:400;opacity:.65;margin-right:2px}
