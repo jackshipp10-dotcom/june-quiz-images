@@ -1,0 +1,39 @@
+{
+  "_how_to_add": "Add one object per product, in the order they should appear. platform 'payhip' shows an on page Buy button (needs payhip_code, the part after payhip.com/b/). platform 'etsy' shows 'Buy on Etsy' linking to url. image lives in site/img (portrait, about 560 wide). featured true puts it on the home page. The home page shows big covers for 2 featured products and switches to a swipe row at 3 or more.",
+  "products": [
+    {
+      "id": "starter-planner",
+      "name": "Starter Planner",
+      "price": "£5",
+      "line": "One page a month, made simple for UK gardens",
+      "detail": [
+        "12 monthly pages with my top 3 jobs",
+        "12 seasonal recipes",
+        "UK frost dates by region",
+        "Printable A4 PDF, undated"
+      ],
+      "image": "cover-starter.jpg",
+      "platform": "payhip",
+      "payhip_code": "Ukt9Q",
+      "url": "https://payhip.com/b/Ukt9Q",
+      "featured": true
+    },
+    {
+      "id": "year-planner",
+      "name": "Year Planner",
+      "price": "£12",
+      "line": "A month by month guide and planner",
+      "detail": [
+        "12 monthly guides and recipe pages",
+        "21 crop cards",
+        "Logs, harvest tally and year in review",
+        "Printable, fillable and tablet versions"
+      ],
+      "image": "cover-year.jpg",
+      "platform": "payhip",
+      "payhip_code": "JR6dv",
+      "url": "https://payhip.com/b/JR6dv",
+      "featured": true
+    }
+  ]
+}

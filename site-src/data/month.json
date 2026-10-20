@@ -1,0 +1,147 @@
+{
+  "_how_to_update": "The 28th monthly task rewrites this file for the next month (matching that month's sowing calendar), adds the new photos to site/img, runs site-src/build.py and pushes. Keep wording in June's voice, British English, no hyphens.",
+  "month": "November",
+  "year": 2026,
+  "slug": "2026-11",
+  "intro": "The beds are going to sleep, but there's still plenty to get in the ground before the frosts set in properly.",
+  "quote": "Leave your parsnips in until after the first frost. The cold turns them sweet.",
+  "home_cards": [
+    {
+      "label": "Sow",
+      "text": "Broad beans",
+      "image": "nov-broad-beans.jpg",
+      "anchor": "sow"
+    },
+    {
+      "label": "Plant",
+      "text": "Fruit bushes",
+      "image": "nov-fruit-bushes.jpg",
+      "anchor": "plant"
+    },
+    {
+      "label": "Cook",
+      "text": "Roast parsnips",
+      "image": "nov-cook-sq.jpg",
+      "anchor": "cook"
+    }
+  ],
+  "sow": [
+    {
+      "name": "Garlic",
+      "note": "Get every clove in this month. It needs the cold to split into a bulb.",
+      "image": "nov-garlic.jpg"
+    },
+    {
+      "name": "Broad beans",
+      "note": "A hardy variety like Aquadulce, straight into the bed, for the earliest beans next spring.",
+      "image": "nov-broad-beans.jpg"
+    },
+    {
+      "name": "Onion sets",
+      "note": "Autumn sets, just the tips showing above the soil.",
+      "image": "nov-onion-sets.jpg"
+    },
+    {
+      "name": "Pea shoots",
+      "note": "A tray on the windowsill. You'll be cutting them in about two weeks.",
+      "image": "nov-pea-shoots.jpg"
+    }
+  ],
+  "plant": [
+    {
+      "name": "Bare root fruit bushes",
+      "note": "Currants, gooseberries and raspberries are cheapest now, sold bare root.",
+      "image": "nov-fruit-bushes.jpg"
+    },
+    {
+      "name": "Rhubarb",
+      "note": "Plant a crown with the buds just at soil level, then leave it alone for a year.",
+      "image": "nov-rhubarb.jpg"
+    }
+  ],
+  "pick": [
+    {
+      "name": "Leeks",
+      "image": "nov-leeks.jpg"
+    },
+    {
+      "name": "Parsnips",
+      "image": "nov-parsnips.jpg"
+    },
+    {
+      "name": "Kale",
+      "image": "nov-kale.jpg"
+    },
+    {
+      "name": "Sprouts",
+      "image": "nov-sprouts.jpg"
+    }
+  ],
+  "pick_also": "cabbage, chard, celeriac and swede",
+  "jobs": [
+    "Plant garlic",
+    "Net kale and sprouts against pigeons",
+    "Mulch empty beds",
+    "Bag up fallen leaves for leaf mould",
+    "Lift pots onto bricks",
+    "Clean and oil your tools",
+    "Check bonfire piles for hedgehogs before lighting"
+  ],
+  "spaces": [
+    {
+      "key": "windowsill",
+      "name": "Windowsill",
+      "tip": "A tray of pea shoots"
+    },
+    {
+      "key": "patio",
+      "name": "Patio",
+      "tip": "Garlic in a deep pot"
+    },
+    {
+      "key": "small-bed",
+      "name": "Small bed",
+      "tip": "Garlic and broad beans"
+    },
+    {
+      "key": "allotment",
+      "name": "Allotment",
+      "tip": "Bare root fruit bushes"
+    }
+  ],
+  "recipe": {
+    "title": "Honey roast parsnips",
+    "serves": "Serves 4",
+    "image": "nov-recipe-parsnips.jpg",
+    "ingredients": [
+      "750g parsnips",
+      "2 tbsp oil",
+      "1 tbsp honey",
+      "A few sprigs of thyme",
+      "Salt and pepper"
+    ],
+    "steps": [
+      "Cut the parsnips into long wedges and toss with the oil, salt and pepper.",
+      "Roast at 200°C (180°C fan) for 30 minutes, turning once.",
+      "Drizzle over the honey, add the thyme and roast 10 minutes more until sticky."
+    ]
+  },
+  "calendar_image": "calendar-2026-11.jpg",
+  "videos": [
+    {
+      "title": "What should you grow this year?",
+      "url": "https://youtu.be/1tmGbaVYhuA",
+      "image": "video-start-here.jpg"
+    },
+    {
+      "title": "Don't bin your autumn leaves",
+      "url": "https://youtube.com/shorts/y7Jv03EIzcA",
+      "image": "video-autumn-leaves.jpg"
+    },
+    {
+      "title": "Supermarket peas into a windowsill salad",
+      "url": "https://youtube.com/shorts/ZboWpUormLI",
+      "image": "video-pea-shoots.jpg"
+    }
+  ]
+}
