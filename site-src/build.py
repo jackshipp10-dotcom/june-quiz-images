@@ -81,7 +81,7 @@ def page(path, title, desc, body, current=None, payhip=False, form=False, noinde
 <footer class="site-foot"><div class="wrap">
 <nav class="foot-links" aria-label="Footer"><a href="{quiz('footer','quiz')}">Free quiz</a><a href="/this-month/">This month</a><a href="/shop/">Shop</a><a href="/privacy/">Privacy</a></nav>
 <div class="foot-social">{social}</div>
-<p class="foot-note">{e(SITE['seller']['trading_as'])} is run by {e(SITE['seller']['name'])}, {e(SITE['seller']['address'])}. Questions? Email <a href="mailto:{SITE['contact_email']}">{SITE['contact_email']}</a>. Growing advice follows general UK guidance; check your seed packets for your variety. &copy; {date.today().year} {e(SITE['name'])}</p>
+<p class="foot-note">Questions? Email <a href="mailto:{SITE['contact_email']}">{SITE['contact_email']}</a>. <a href="/privacy/#seller">Seller details</a>. Growing advice follows general UK guidance; check your seed packets for your variety. &copy; {date.today().year} {e(SITE['name'])}</p>
 </div></footer>
 {scripts}
 </body>
@@ -231,7 +231,7 @@ shop = f"""
 </section>
 <section class="section wrap">
   <div class="notice"><p><b>Not sure where to start?</b> My free quiz tells you what to grow in your space, and which planner suits you.</p><a class="btn" href="{quiz('shop','quiz')}">Take the free quiz</a></div>
-  <p class="foot-note" style="margin-top:14px">Sold by {e(SITE['seller']['name'])} trading as {e(SITE['seller']['trading_as'])}, {e(SITE['seller']['address'])}, {SITE['contact_email']}. Add what you want to your basket, then check out once. Checkout is handled securely by Payhip, which emails your downloads straight away. These are digital downloads, so nothing is posted, and your 14 day right to cancel ends once the download starts.</p>
+  <p class="foot-note" style="margin-top:14px">Sold by {e(SITE['seller']['trading_as'])} (<a href="/privacy/#seller">seller details</a>). Add what you want to your basket, then check out once. Checkout is handled securely by Payhip, which emails your downloads straight away. These are digital downloads, so nothing is posted, and your 14 day right to cancel ends once the download starts.</p>
 </section>
 """
 page("shop/index.html", "Printable UK veg growing planners | Plot to Plate with June",
@@ -244,7 +244,7 @@ priv = f"""
 <div class="wrap"><article class="prose">
 <h1>Privacy</h1>
 <p>Last updated {date.today().strftime('%-d %B %Y')}.</p>
-<h2>Who runs this site</h2>
+<h2 id="seller">Who runs this site</h2>
 <p>{e(SITE['seller']['trading_as'])} is run by {e(SITE['seller']['name'])}, {e(SITE['seller']['address'])}. You can contact us at {SITE['contact_email']}.</p>
 <h2>What we collect</h2>
 <p><b>The quiz.</b> If you take the free quiz, your answers and, if you choose to give it, your name and email are collected by Tally (our form provider). If you tick the box to hear from us, your email, name and quiz answers are added to our mailing list.</p>
