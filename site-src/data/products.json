@@ -4,7 +4,7 @@
     {
       "id": "starter-planner",
       "name": "Starter Planner",
-      "price": "£5",
+      "price": "£4.99",
       "line": "One page a month, made simple for UK gardens",
       "detail": [
         "12 monthly pages with my top 3 jobs",
@@ -21,7 +21,8 @@
     {
       "id": "year-planner",
       "name": "Year Planner",
-      "price": "£12",
+      "price": "£8.99",
+      "was_price": "£11.99",
       "line": "A month by month guide and planner",
       "detail": [
         "12 monthly guides and recipe pages",
