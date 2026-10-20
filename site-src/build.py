@@ -193,7 +193,7 @@ form_html = ""
 cf = SITE["calendar_form"]
 if cf.get("action"):
     form_html = f"""<form data-ml action="{cf['action']}" method="post">
-  <label for="cal-email">Or get it by email each month</label>
+  <label for="cal-email">Your email address</label>
   <input id="cal-email" type="email" name="fields[email]" autocomplete="email" required placeholder="you@example.com">
   <label class="consent"><input type="checkbox" name="consent" value="1"> <span>{e(cf['consent'])} See my <a href="/privacy/">privacy notice</a>.</span></label>
   <input type="hidden" name="ml-submit" value="1"><input type="hidden" name="anticsrf" value="true">
