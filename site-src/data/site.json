@@ -6,8 +6,9 @@
   "calendar_file": "https://cdn.jsdelivr.net/gh/jackshipp10-dotcom/june-quiz-images@main/calendar/sowing-calendar.pdf",
   "calendar_form": {
     "_note": "MailerLite embedded form for 'Get the calendar by email'. Leave action empty to hide the email form (the free download button still shows).",
-    "action": "",
-    "consent": "Yes, email me June's free calendar each month, plus her growing tips. Unsubscribe any time."
+    "action": "https://assets.mailerlite.com/jsonp/2722815/forms/201857265769121157/subscribe",
+    "consent": "Yes, email me June's free calendar each month, plus her growing tips. Unsubscribe any time.",
+    "_group": "Calendar sign ups (201857259641242981), double opt in on"
   },
   "contact_email": "june@plottoplatejune.co.uk",
   "social": [
