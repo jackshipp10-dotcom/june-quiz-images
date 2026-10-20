@@ -100,8 +100,7 @@ document.querySelectorAll('form[data-ml]').forEach(function(f){
     if(!f.querySelector('[name=consent]').checked){msg.textContent='Tick the box so I can email you.';return;}
     btn.disabled=true; msg.textContent='Sending...';
     fetch(f.action,{method:'POST',body:new FormData(f),mode:'no-cors'}).then(function(){
-      msg.textContent='Done. Check your inbox to confirm, and here is this month’s calendar now:';
-      var a=document.createElement('a');a.href='/calendar';a.textContent=' download it';a.className='dl';msg.appendChild(a);
+      msg.textContent='Nearly there. Check your inbox and tap the button in my email to confirm, and your calendar comes straight over.';
     }).catch(function(){msg.textContent='That didn’t send. Check your connection and try again.';btn.disabled=false;});
   });
 });
@@ -141,7 +140,7 @@ def price_html(p):
 
 def calstrip():
     return (f'<div class="calstrip"><img src="/img/{MONTH["calendar_image"]}" alt="" width="64" height="96" loading="lazy">'
-            f'<p>My one page sowing calendar for {MONTH["month"]}</p><a class="btn" href="{SITE["calendar_url"]}">Get it free</a></div>')
+            f'<p>My one page sowing calendar for {MONTH["month"]}</p><a class="btn" href="/this-month/#calendar">Get it free by email</a></div>')
 
 
 def videos():
@@ -163,7 +162,7 @@ home = f"""
   <section class="section" aria-labelledby="month-h">
     <div class="section-head"><h2 id="month-h">This month</h2><a class="btn-outline" href="/this-month/">All of {MONTH['month']}</a></div>
     <div class="cards3">{''.join(f'<a class="pcard" href="/this-month/#{c["anchor"]}"><img src="/img/{c["image"]}" alt="" width="200" height="200" loading="lazy"><b>{e(c["label"])}</b><span>{e(c["text"])}</span></a>' for c in MONTH['home_cards'])}</div>
-    <div class="after-cards"><a class="btn btn-paper btn-block" href="{SITE['calendar_url']}">Get my free {MONTH['month']} calendar</a></div>
+    <div class="after-cards"><a class="btn btn-paper btn-block" href="/this-month/#calendar">Get my free {MONTH['month']} calendar by email</a></div>
   </section>
   <section class="section" aria-labelledby="shop-h">
     <div class="section-head"><h2 id="shop-h">My planners</h2><a class="btn-outline" href="/shop/">Visit the shop</a></div>
@@ -209,7 +208,7 @@ tm = f"""
 </section>
 <section class="section wrap" id="calendar" aria-labelledby="cal-h">
   <div class="signup">
-    <div class="row"><img src="/img/{MONTH['calendar_image']}" alt="June's {MONTH['month']} sowing calendar" width="84" height="126"><div><h2 id="cal-h">My free {MONTH['month']} calendar</h2><p class="small">One page: what to sow, plant, pick and cook, week by week.</p><p style="margin-top:10px"><a class="btn" href="{SITE['calendar_url']}">Download it free</a></p></div></div>{form_html}
+    <div class="row"><img src="/img/{MONTH['calendar_image']}" alt="June's {MONTH['month']} sowing calendar" width="84" height="126"><div><h2 id="cal-h">My free {MONTH['month']} calendar</h2><p class="small">One page: what to sow, plant, pick and cook, week by week.</p><p class="small" style="margin-top:8px">Pop your email in below and I'll send it straight over, then a new one at the start of every month.</p></div></div>{form_html}
   </div>
 </section>
 <section class="section wrap" id="sow" aria-labelledby="sow-h"><div class="section-head"><h2 id="sow-h">Sow this month</h2></div>{items(MONTH['sow'])}</section>
