@@ -41,7 +41,7 @@ def page(path, title, desc, body, current=None, payhip=False, form=False, noinde
     navhtml = "".join(f'<a href="{u}"{" aria-current=\"page\"" if current == u else ""}>{n}</a>' for n, u in nav)
     social = "".join(f'<a href="{s["url"]}" rel="me noopener" target="_blank">{s["name"]}</a>' for s in SITE["social"])
     scripts = ""
-    head_js = '<script type="text/javascript" src="https://payhip.com/payhip.js"></script>' if payhip else ""
+    head_js = '<script>window.PayhipConfig={enableCart:true};</script><script type="text/javascript" src="https://payhip.com/payhip.js"></script>' if payhip else ""
     if False:
         pass
     if form:
@@ -118,7 +118,7 @@ def packets(medium):
 def buy_button(p):
     if p["platform"] == "payhip":
         c = p["payhip_code"]
-        return f'<a href="https://payhip.com/b/{c}" class="payhip-buy-button btn" data-theme="none" data-product="{c}">Add to basket</a>'
+        return f'<a href="https://payhip.com/b/{c}" class="payhip-add-to-cart-button btn" data-theme="none" data-product="{c}">Add to basket</a>'
     return f'<a href="{p["url"]}" class="btn" target="_blank" rel="noopener">Buy on Etsy</a>'
 
 
