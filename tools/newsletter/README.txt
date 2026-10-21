@@ -10,5 +10,5 @@ fonts, colours and footer exactly. Section order, every issue:
   6. FROM THE SHOP (one product, current price from site-src/data/products.json, link with UTM; image in site/img/newsletter/shop-<slug>.jpg)
   7. IN THE KITCHEN (short recipe or kitchen tip using what's in season)
   8. Sign off: "That's me for now. Next notes on the <date>." + Happy growing, June + a P.S. inviting replies
-  9. Footer: why they're getting it, the postal address line and june@ email (legal), website, Seller and privacy details, {$unsubscribe}
+  9. Footer: why they're getting it, "Plot to Plate with June, London" (no street address, Jack 21 Oct 2026; the full address is on the privacy page) and june@ email, website, Seller and privacy details, {$unsubscribe}
 Images must be live on plottoplatejune.co.uk before the campaign is scheduled. No repeats of the monthly email or earlier issues.
