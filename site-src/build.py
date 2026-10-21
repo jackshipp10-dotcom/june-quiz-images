@@ -122,19 +122,21 @@ def buy_button(p):
 
 
 def product_card(p, cls="prod", details=False, heading="h3"):
+    url = f"/shop/{p['id']}/"
     extra = ""
     if details and p.get("detail"):
         extra = "<ul>" + "".join(f"<li>{e(d)}</li>" for d in p["detail"]) + "</ul>"
-    return (f'<article class="{cls}"><img src="/img/{p["image"]}" alt="" width="280" height="396" loading="lazy">'
-            f'<{heading}>{e(p["name"])}</{heading}><p>{e(p["line"])}</p>{extra}'
-            f'<div class="buy">{price_html(p)}{buy_button(p)}</div></article>')
+    more = f'<a class="more" href="{url}">See inside</a>' if cls == "shop-item" else ""
+    return (f'<article class="{cls}"><a class="cover" href="{url}" tabindex="-1" aria-hidden="true"><img src="/img/{p["image"]}" alt="" width="280" height="396" loading="lazy"></a>'
+            f'<{heading}><a href="{url}">{e(p["name"])}</a></{heading}><p>{e(p["line"])}</p>{extra}'
+            f'<div class="buy">{price_html(p)}{buy_button(p)}</div>{more}</article>')
 
 
 def price_html(p):
     # Optional sale: set "was_price" in products.json (e.g. "£12") and "price" to the sale price.
     if p.get("was_price"):
-        return (f'<span class="price"><s class="was" aria-label="was {e(p["was_price"])}">{e(p["was_price"])}</s> '
-                f'{e(p["price"])}</span>')
+        return (f'<span class="price"><span class="sr">Was </span><s class="was">{e(p["was_price"])}</s> '
+                f'<span class="sr">now </span>{e(p["price"])}</span>')
     return f'<span class="price">{e(p["price"])}</span>'
 
 
@@ -234,7 +236,7 @@ shop = f"""
   <p>Planners and printables written for UK gardens, windowsills and allotments. Instant download, print at home as often as you like.</p>
 </section>
 <section class="section wrap" aria-label="Products">
-  <div class="shop-grid">{''.join(product_card(p, cls='shop-item', details=True, heading='h2') for p in PRODUCTS)}</div>
+  <div class="shop-grid">{''.join(product_card(p, cls='shop-item', heading='h2') for p in PRODUCTS)}</div>
 </section>
 <section class="section wrap">
   <div class="notice"><p><b>Not sure where to start?</b> My free quiz tells you what to grow in your space, and which planner suits you.</p><a class="btn" href="{quiz('shop','quiz')}">Take the free quiz</a></div>
@@ -242,8 +244,80 @@ shop = f"""
 </section>
 """
 page("shop/index.html", "Printable UK veg growing planners | Plot to Plate with June",
-     "June's UK veg growing planners: the Starter Planner and the Year Planner. Printable, undated, instant download.",
+     "June's printable planners, sowing charts, seed kit and gift set for UK veg growers. Instant download, print at home.",
      shop, current="/shop/", payhip=True)
+
+
+# ---------- Product pages ----------
+GALLERY_JS = r"""
+document.querySelectorAll('.gallery').forEach(function(g){
+  var stage=g.querySelector('.stage'), items=[].slice.call(stage.children), thumbs=[].slice.call(g.querySelectorAll('.thumbs button'));
+  function mark(i){
+    thumbs.forEach(function(t,k){t.setAttribute('aria-current',k===i?'true':'false');});if(thumbs[i]){var s=thumbs[i].parentNode;s.scrollTo({left:thumbs[i].offsetLeft-s.offsetLeft-(s.clientWidth-thumbs[i].offsetWidth)/2,behavior:'smooth'});}
+    items.forEach(function(it,k){var v=it.querySelector('video');if(v){if(k===i){v.play().catch(function(){});}else{v.pause();}}});
+  }
+  thumbs.forEach(function(t,i){t.addEventListener('click',function(){stage.scrollTo({left:items[i].offsetLeft-stage.offsetLeft,behavior:'smooth'});mark(i);});});
+  var tid;stage.addEventListener('scroll',function(){clearTimeout(tid);tid=setTimeout(function(){mark(Math.round(stage.scrollLeft/stage.clientWidth));},80);},{passive:true});
+});
+"""
+
+
+def product_page(p):
+    pg = p["page"]
+    pid = p["id"]
+    url = f"/shop/{pid}/"
+    n = pg["gallery"]
+    vid = (f'<div class="slide"><video src="/video/{p["video"]}" poster="/video/{pid}.jpg" muted loop playsinline preload="none" aria-label="A 15 second look at the {e(p["name"][4:] if p["name"].startswith("The ") else p["name"])}" controls></video></div>',
+           f'<button type="button" aria-label="Play the video" aria-current="false"><img src="/video/{pid}.jpg" alt="" width="160" height="90" loading="lazy"><span class="play" aria-hidden="true"></span></button>') if p.get("video") else None
+    slides = [f'<div class="slide"><img src="/img/products/{pid}/{i:02d}.jpg" alt="{e(p["name"])}, picture {i} of {n}" width="1000" height="1000"{"" if i == 1 else ' loading="lazy"'}></div>' for i in range(1, n + 1)]
+    thumbs = [f'<button type="button" aria-label="Show picture {i}" aria-current="{"true" if i == 1 else "false"}"><img src="/img/products/{pid}/{i:02d}-t.jpg" alt="" width="160" height="160" loading="lazy"></button>' for i in range(1, n + 1)]
+    if vid:
+        slides.insert(1, vid[0]); thumbs.insert(1, vid[1])
+    secs = ""
+    for sec in pg["sections"]:
+        tag = "ol" if len(sec) > 2 and sec[2] == "ol" else "ul"
+        secs += f'<h2>{e(sec[0])}</h2><{tag}>' + "".join(f"<li>{e(x)}</li>" for x in sec[1]) + f"</{tag}>"
+    if pg.get("note"):
+        secs += f'<p class="note">{e(pg["note"])}</p>'
+    if pg.get("more"):
+        q, other, txt = pg["more"]
+        op = next(x for x in PRODUCTS if x["id"] == other)
+        secs += f'<p class="cross"><b>{e(q)}</b> {e(txt)} <a href="/shop/{other}/">See the {e(op["name"])}</a></p>'
+    intro = "".join(f"<p>{e(x)}</p>" for x in pg["intro"])
+    related = [x for x in PRODUCTS if x["id"] != pid][:3]
+    price_num = p["price"].replace("\u00a3", "")
+    ld = {"@context": "https://schema.org", "@type": "Product", "name": p["name"], "description": p["line"] + ". " + " ".join(pg["intro"]),
+          "image": [f"{SITE['domain']}/img/products/{pid}/{i:02d}.jpg" for i in range(1, n + 1)],
+          "brand": {"@type": "Brand", "name": SITE["name"]},
+          "offers": {"@type": "Offer", "url": SITE["domain"] + url, "priceCurrency": "GBP", "price": price_num, "availability": "https://schema.org/InStock"}}
+    body = f"""
+<div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="/shop/">Shop</a><span aria-hidden="true">/</span><span>{e(p['name'])}</span></nav></div>
+<section class="pdp wrap">
+  <div class="gallery"><div class="stage">{''.join(slides)}</div><div class="thumbs">{''.join(thumbs)}</div></div>
+  <div class="pinfo">
+    <h1>{e(p['name'])}</h1>
+    <p class="lead">{e(p['line'])}</p>
+    <div class="buy">{price_html(p)}{buy_button(p)}</div>
+    <ul class="ticks"><li>Instant download, nothing is posted</li><li>Print at home as often as you like</li><li>Secure checkout by Payhip</li></ul>
+    <div class="intro">{intro}</div>
+  </div>
+</section>
+<section class="pdp-more wrap">{secs}
+  <p class="foot-note">Good to know: this is a digital download, so nothing is posted. Because it’s available immediately, your 14 day right to cancel ends once the download starts. For personal use only. Sold by {e(SITE['seller']['trading_as'])} (<a href="/privacy/#seller">seller details</a>).</p>
+</section>
+<section class="section wrap" aria-labelledby="rel-h"><div class="section-head"><h2 id="rel-h">You might also like</h2><a class="btn-outline" href="/shop/">All products</a></div>
+  <div class="shop-grid related">{''.join(product_card(x, cls='shop-item', heading='h3') for x in related)}</div>
+</section>
+<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<script>{GALLERY_JS}</script>
+"""
+    desc = (p["line"] + ". " + " ".join(pg["intro"]))[:300]
+    page(f"shop/{pid}/index.html", f"{pg['title']} | Plot to Plate with June", desc, body, current="/shop/", payhip=True)
+
+
+for _p in PRODUCTS:
+    if _p.get("page"):
+        product_page(_p)
 
 
 # ---------- Privacy ----------
@@ -278,7 +352,7 @@ page("404.html", "Page not found | Plot to Plate with June", "Page not found.", 
 open(os.path.join(OUT, "_redirects"), "w").write(
     f"/calendar {SITE['calendar_file']} 302\n/quiz {SITE['quiz_url']}?utm_source=website&utm_medium=short_link&utm_campaign=quiz 302\n")
 open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE['domain']}/sitemap.xml\n")
-urls = ["/", "/this-month/", "/shop/", "/privacy/"]
+urls = ["/", "/this-month/", "/shop/"] + [f"/shop/{x['id']}/" for x in PRODUCTS if x.get("page")] + ["/privacy/"]
 open(os.path.join(OUT, "sitemap.xml"), "w").write(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     "".join(f"  <url><loc>{SITE['domain']}{u}</loc><lastmod>{date.today().isoformat()}</lastmod></url>\n" for u in urls) + "</urlset>\n")

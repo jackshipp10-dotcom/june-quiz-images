@@ -16,7 +16,36 @@
       "platform": "payhip",
       "payhip_code": "GJ4wR",
       "url": "https://payhip.com/b/GJ4wR",
-      "featured": true
+      "featured": true,
+      "page": {
+        "gallery": 7,
+        "title": "Gardening gift set: Year Planner, sowing chart and seed kit",
+        "intro": [
+          "Nothing to post and nothing to wrap: buy today, print tonight, give it tomorrow.",
+          "Everything a grower needs for the year ahead, plus a printable card from me so it feels like a proper present."
+        ],
+        "sections": [
+          [
+            "What's in the gift set",
+            [
+              "The Year Planner (51 pages): monthly guides, 21 crop cards, 12 seasonal recipes, logs and a year in review. Print, fillable and tablet (GoodNotes) versions.",
+              "The UK Sowing and Harvest Chart: 35 crops, A4 and A3, colour and low ink.",
+              "June's Seed Tin Kit: seed cards, month dividers, swap envelopes and 32 plant labels.",
+              "A printable gift card that folds in half, with June on the front and room for your message inside, plus a page on how to give it."
+            ]
+          ],
+          [
+            "How to give it",
+            [
+              "Print the gift card on card and fold it in half.",
+              "Email the files to the person you're giving it to, or print the pages and pop them in a ring binder.",
+              "You're welcome to give the files to the one person you bought them for."
+            ]
+          ]
+        ],
+        "note": "All dates are set for UK gardens."
+      },
+      "video": "gift-set.mp4"
     },
     {
       "id": "starter-planner",
@@ -33,7 +62,43 @@
       "platform": "payhip",
       "payhip_code": "Ukt9Q",
       "url": "https://payhip.com/b/Ukt9Q",
-      "featured": true
+      "featured": true,
+      "page": {
+        "gallery": 7,
+        "title": "The Starter Planner: UK veg growing for beginners",
+        "intro": [
+          "New to growing your own? This is the simple way to start.",
+          "One page a month, written for UK gardens, windowsills and balconies. Each page tells you exactly what to do that month, what to sow and pick, and gives you something to cook with it.",
+          "Every date is set for the UK, with a frost date table so you know when it's safe in your part of the country."
+        ],
+        "sections": [
+          [
+            "What's inside (19 pages)",
+            [
+              "12 monthly pages: my top 3 jobs, a tip, what to sow, plant and pick, and space to note what you did",
+              "12 seasonal recipes, one for every month",
+              "The six easiest crops for beginners, all happy in pots",
+              "The year at a glance: every crop, every month, on one page",
+              "UK frost dates by region, from the south coast to the Highlands",
+              "Words and problems: a plain English glossary and quick fixes for slugs, blight and more"
+            ]
+          ],
+          [
+            "Details",
+            [
+              "Instant download, A4 PDF, print at home as often as you like",
+              "Undated, so start any month and use it any year",
+              "Metric measurements and UK oven temperatures"
+            ]
+          ]
+        ],
+        "more": [
+          "Want more?",
+          "year-planner",
+          "The Year Planner adds crop cards, logs and fillable and tablet versions."
+        ]
+      },
+      "video": "starter-planner.mp4"
     },
     {
       "id": "year-planner",
@@ -51,7 +116,50 @@
       "platform": "payhip",
       "payhip_code": "JR6dv",
       "url": "https://payhip.com/b/JR6dv",
-      "featured": true
+      "featured": true,
+      "page": {
+        "gallery": 7,
+        "title": "The Year Planner: a whole year of UK grow your own",
+        "intro": [
+          "Everything you need to plan, grow and cook a whole year of your own veg, written for UK gardens, balconies and allotments.",
+          "Each month has two pages: a guide page with my top 3 jobs, what to sow, plant and pick, and a cook it and log it page with a seasonal recipe and space to record what you grew."
+        ],
+        "sections": [
+          [
+            "What's inside (51 pages)",
+            [
+              "12 monthly guides and 12 cook it and log it pages",
+              "21 crop cards: sow, plant out and pick dates, spacing, care and common problems",
+              "12 seasonal recipes, one for every month",
+              "The year at a glance, plus the six easiest crops to start with",
+              "UK frost dates by region",
+              "My growing space planner, sowing logs, harvest tally and a year in review",
+              "Looking after pots, when things go wrong, words I use and varieties to try"
+            ]
+          ],
+          [
+            "Three files in one download",
+            [
+              "Print: A4, 51 pages",
+              "Fillable PDF: type straight into it in Adobe Acrobat Reader",
+              "Tablet: tabbed version for GoodNotes and Notability"
+            ]
+          ],
+          [
+            "Details",
+            [
+              "Undated, so start any month and use it any year",
+              "Metric measurements and UK oven temperatures"
+            ]
+          ]
+        ],
+        "more": [
+          "Just starting out with a windowsill or a few pots?",
+          "starter-planner",
+          "The Starter Planner is the simpler version."
+        ]
+      },
+      "video": "year-planner.mp4"
     },
     {
       "id": "uk-chart",
@@ -68,7 +176,41 @@
       "platform": "payhip",
       "payhip_code": "B8NKk",
       "url": "https://payhip.com/b/B8NKk",
-      "featured": false
+      "featured": false,
+      "page": {
+        "gallery": 6,
+        "title": "UK Sowing and Harvest Chart: what to sow, plant and pick every month",
+        "intro": [
+          "Every crop, every month, on one page. Pin it up by the back door and you'll always know what to sow, plant out and pick.",
+          "Set for UK gardens, patios and allotments."
+        ],
+        "sections": [
+          [
+            "What's on the chart",
+            [
+              "35 crops: salads, roots, onions and garlic, the cabbage family, peas and beans, tomatoes and other tender crops, herbs and fruit",
+              "When to sow indoors, sow outside, plant out and pick, in the early and late half of each month",
+              "The usual last frost marked, so you know when tender crops can go out",
+              "A cook it strip: a seasonal dish for every month",
+              "Notes for the north and Scotland, and for the south west"
+            ]
+          ],
+          [
+            "What you download (2 PDFs)",
+            [
+              "A4",
+              "A3, the best size for the wall",
+              "Each file has a full colour page and a low ink page"
+            ]
+          ]
+        ],
+        "more": [
+          "Not in the UK?",
+          "any-garden-chart",
+          "The Sowing Chart for Any Garden counts from your own last frost date."
+        ]
+      },
+      "video": "uk-chart.mp4"
     },
     {
       "id": "seed-kit",
@@ -85,7 +227,38 @@
       "platform": "payhip",
       "payhip_code": "UGnch",
       "url": "https://payhip.com/b/UGnch",
-      "featured": false
+      "featured": false,
+      "page": {
+        "gallery": 5,
+        "title": "June's Seed Tin Kit: seed inventory, swap envelopes and plant labels",
+        "intro": [
+          "Keep track of every packet, swap the spares, and label what you sow.",
+          "My seeds live in an old biscuit tin, filed by the month I sow them. On the first of each month I open it, pull out that month's cards, and I know exactly what's going in. This kit is everything you need to do the same."
+        ],
+        "sections": [
+          [
+            "What's inside (12 pages)",
+            [
+              "Seed tin inventory: every packet you own, with its sow by date",
+              "Blank seed cards to fill in, one per crop, with space for sowing, spacing and notes",
+              "12 month dividers with staggered tabs, so every month shows, and what's usually sown or planted that month",
+              "A fold up seed swap envelope",
+              "My swap list: what you have and what you're after",
+              "Plant labels for 32 crops, plus a page of blank ones",
+              "Sowing record: what you sowed and how many came up"
+            ]
+          ],
+          [
+            "Formats",
+            [
+              "A4 and US Letter PDFs",
+              "Print on card (160 to 200 gsm) for the cards, dividers and labels",
+              "Print as many as you need for your own garden"
+            ]
+          ]
+        ]
+      },
+      "video": "seed-kit.mp4"
     },
     {
       "id": "any-garden-chart",
@@ -102,7 +275,47 @@
       "platform": "payhip",
       "payhip_code": "P2J3z",
       "url": "https://payhip.com/b/P2J3z",
-      "featured": false
+      "featured": false,
+      "page": {
+        "gallery": 5,
+        "title": "Sowing Chart for Any Garden: counted from your last frost date",
+        "intro": [
+          "Month by month planting charts only fit one climate. This one counts in weeks from your own last spring frost date, so it works wherever you garden, as long as you get a spring frost."
+        ],
+        "sections": [
+          [
+            "How it works",
+            [
+              "Look up your average last spring frost date (search \"last frost date\" with your town or zip code).",
+              "Write it under the last frost line on the chart.",
+              "Count the weeks either side. Tomatoes, for example: sow indoors 6 to 10 weeks before, plant out 1 to 3 weeks after."
+            ],
+            "ol"
+          ],
+          [
+            "What's on the chart",
+            [
+              "29 vegetables, salads and herbs",
+              "When to start seeds indoors, sow outside and plant out",
+              "When to pick each crop"
+            ]
+          ],
+          [
+            "What you download (2 PDFs)",
+            [
+              "US Letter",
+              "A4",
+              "Each file has a full colour page and a low ink page"
+            ]
+          ]
+        ],
+        "more": [
+          "Growing in the UK?",
+          "uk-chart",
+          "The UK Sowing and Harvest Chart has the dates already worked out for you."
+        ]
+      },
+      "video": "any-garden-chart.mp4"
     }
   ]
 }
