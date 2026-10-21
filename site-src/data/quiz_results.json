@@ -1,0 +1,154 @@
+[
+  {
+    "key": "windowsill-grower",
+    "name": "Windowsill Grower",
+    "intro": "No garden? No problem. A bright sill and a few pots will keep you in fresh leaves and herbs most of the year.",
+    "five": [
+      {
+        "crop": "Salad leaves",
+        "text": "sow a pinch every 2 to 3 weeks from spring to early autumn. Pick the outer leaves and they keep coming."
+      },
+      {
+        "crop": "Basil",
+        "text": "sow from spring to midsummer on your warmest, sunniest sill."
+      },
+      {
+        "crop": "Chillies",
+        "text": "sow in late winter or early spring somewhere warm. One plant gives you plenty."
+      },
+      {
+        "crop": "Spring onions",
+        "text": "sow in a wide pot from spring to midsummer and snip as you need them."
+      },
+      {
+        "crop": "Microgreens",
+        "text": "sow any time of year on damp compost. Ready to cut in 1 to 3 weeks."
+      }
+    ],
+    "right_now": "Start with microgreens. A shallow tray, damp compost and a bag of dried peas from the supermarket. Soak them overnight, pack them in, keep them damp, and you'll be cutting pea shoots in about two weeks. I'm doing exactly that on my own windowsill at the moment.",
+    "recipes": [
+      {
+        "title": "Herby spring onion omelette (serves 1)",
+        "method": "Beat 2 eggs with a small handful of chopped herbs, salt and pepper. Soften 2 sliced spring onions in a knob of butter for a minute, pour in the eggs, cook for 2 to 3 minutes, fold and serve."
+      },
+      {
+        "title": "Leaf and shoot bowl (serves 1)",
+        "method": "Whisk 1 tbsp olive oil, a squeeze of lemon and a pinch of salt. Toss through 2 handfuls of salad leaves and a handful of shoots just before eating."
+      }
+    ]
+  },
+  {
+    "key": "patio-potter",
+    "name": "Patio Potter",
+    "intro": "A few big pots on a sunny patio or balcony can grow more than you'd think, including proper summer crops.",
+    "five": [
+      {
+        "crop": "Tomatoes",
+        "text": "sow indoors in early spring, or buy young plants in May. Move them outside once the frosts are over. Pick bush or tumbling types for pots."
+      },
+      {
+        "crop": "Strawberries",
+        "text": "plant in spring or late summer. A pot or hanging basket keeps the slugs off."
+      },
+      {
+        "crop": "Potatoes in a bag",
+        "text": "plant early varieties in spring and tip the bag out about 10 to 12 weeks later."
+      },
+      {
+        "crop": "Runner beans",
+        "text": "sow in late spring in a deep pot with tall canes."
+      },
+      {
+        "crop": "Salad leaves",
+        "text": "sow a pinch every 2 to 3 weeks from spring to early autumn."
+      }
+    ],
+    "right_now": "Plant garlic in a deep pot. Five or six of the biggest cloves, pointy end up, just under the surface. Leave it outside all winter, the cold is what makes it split into bulbs, and you'll lift it next summer.",
+    "recipes": [
+      {
+        "title": "Tray roasted tomato pasta (serves 2)",
+        "method": "Roast 400g cherry tomatoes with 2 sliced garlic cloves, 2 tbsp olive oil, salt and pepper at 200C (180C fan) for 20 to 25 minutes. Toss with 180g cooked pasta, a splash of pasta water and torn basil."
+      },
+      {
+        "title": "New potato salad (serves 2 to 3)",
+        "method": "Boil 500g new potatoes for 15 to 20 minutes. Cool a little, halve, then stir through 2 tbsp mayonnaise, 2 tbsp natural yoghurt and a bunch of snipped chives."
+      }
+    ]
+  },
+  {
+    "key": "small-bed-starter",
+    "name": "Small Bed Starter",
+    "intro": "One small bed, planned well, can give you something to pick from spring right through to autumn.",
+    "five": [
+      {
+        "crop": "Garlic",
+        "text": "plant single cloves in October or November, pointy end up, about 15cm apart. Lift it next summer when the leaves turn yellow."
+      },
+      {
+        "crop": "Courgettes",
+        "text": "sow indoors in mid spring or buy young plants, and plant out once the frosts are over. One or two is plenty."
+      },
+      {
+        "crop": "French beans",
+        "text": "sow outside from late spring to midsummer. Dwarf types need no canes."
+      },
+      {
+        "crop": "Beetroot",
+        "text": "sow outside from spring to midsummer. Pull them at golf ball size for the sweetest roots."
+      },
+      {
+        "crop": "Salad leaves",
+        "text": "sow a short row every 2 to 3 weeks so you never have a glut."
+      }
+    ],
+    "right_now": "Garlic is your job this month. Clear a strip of the bed, pop the biggest cloves in, and spread a layer of compost over the rest of the bed so it's ready for spring. Don't dig it in, the worms will do that for you.",
+    "recipes": [
+      {
+        "title": "Courgette fritters (makes about 8)",
+        "method": "Grate 2 courgettes and squeeze out the water in a clean tea towel. Mix with 1 egg, 3 tbsp plain flour, 50g crumbled feta and 2 sliced spring onions. Fry spoonfuls for 2 to 3 minutes each side."
+      },
+      {
+        "title": "Roast beetroot and garlic (serves 2 to 3)",
+        "method": "Toss 4 beetroot, peeled and cut into wedges, with 6 unpeeled garlic cloves, 2 tbsp olive oil and salt. Roast at 200C (180C fan) for 35 to 40 minutes and finish with a splash of balsamic."
+      }
+    ]
+  },
+  {
+    "key": "plot-keeper",
+    "name": "Plot Keeper",
+    "intro": "You've got the space for the big crops, the ones that fill a cupboard and see you through winter.",
+    "five": [
+      {
+        "crop": "Potatoes",
+        "text": "earlies in early spring, maincrops in mid spring."
+      },
+      {
+        "crop": "Onions",
+        "text": "sets in early spring, or autumn varieties from September to November."
+      },
+      {
+        "crop": "Squash",
+        "text": "sow indoors in mid spring and plant out once the frosts are over. Harvest before the first frost and they'll store for months."
+      },
+      {
+        "crop": "Kale",
+        "text": "sow in spring, plant out in early summer, pick from autumn right through winter."
+      },
+      {
+        "crop": "Fruit bushes",
+        "text": "plant bare root blackcurrants, gooseberries or raspberries between November and March. Plant once, pick for years."
+      }
+    ],
+    "right_now": "Get autumn onion sets and garlic in this month, and order bare root fruit to plant from November. Anything you're not using over winter, cover with cardboard or compost to keep the weeds down.",
+    "recipes": [
+      {
+        "title": "Squash and kale soup (serves 4)",
+        "method": "Soften a chopped onion for 5 minutes. Add 1kg peeled, cubed squash, 2 garlic cloves and 1 litre of veg stock and simmer for 20 minutes. Blend, stir in 2 handfuls of shredded kale and simmer for 3 more minutes."
+      },
+      {
+        "title": "Bubble and squeak (serves 2)",
+        "method": "Fry a sliced onion in butter until soft. Add 400g roughly crushed cooked potatoes and 2 handfuls of cooked greens, season, press flat and cook for 5 minutes. Break it up, turn it over and cook for 5 more."
+      }
+    ]
+  }
+]

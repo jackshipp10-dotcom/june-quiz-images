@@ -320,6 +320,44 @@ for _p in PRODUCTS:
         product_page(_p)
 
 
+# ---------- Quiz result page (linked from the quiz welcome email) ----------
+QR = _smart(json.load(open(os.path.join(ROOT, "data/quiz_results.json"))))
+QR_IMG = {"windowsill-grower": "space-windowsill.jpg", "patio-potter": "space-patio.jpg", "small-bed-starter": "space-small-bed.jpg", "plot-keeper": "space-allotment.jpg"}
+
+
+def qr_section(r):
+    five = "".join(f"<li><b>{e(c['crop'])}:</b> {e(c['text'])}</li>" for c in r["five"])
+    rec = "".join(f"<div class=\"qr-rec\"><h3>{e(x['title'])}</h3><p>{e(x['method'])}</p></div>" for x in r["recipes"])
+    return (f'<section class="qr" id="{r["key"]}" data-name="{e(r["name"].lower())}">'
+            f'<div class="qr-head"><img src="/img/{QR_IMG[r["key"]]}" alt="" width="120" height="120"><div><p class="kicker">Your result</p><h2>{e(r["name"])}</h2><p>{e(r["intro"])}</p></div></div>'
+            f'<h3>Your starter five</h3><ol class="qr-five">{five}</ol>'
+            f'<div class="qr-now"><b>Right now:</b> {e(r["right_now"])}</div>'
+            f'<h3>Two things to cook</h3><div class="qr-recs">{rec}</div></section>')
+
+
+QR_JS = r"""
+(function(){
+  var p=new URLSearchParams(location.search).get('r')||location.hash.slice(1)||'';
+  var k=p.toLowerCase().replace(/[^a-z]+/g,' ').trim();
+  var secs=[].slice.call(document.querySelectorAll('.qr')), tabs=[].slice.call(document.querySelectorAll('.qr-tabs button'));
+  function show(i){secs.forEach(function(s,j){s.hidden=j!==i;});tabs.forEach(function(t,j){t.setAttribute('aria-pressed',j===i?'true':'false');});}
+  var i=secs.findIndex(function(s){return s.dataset.name===k||s.id===p.toLowerCase();});
+  show(i<0?0:i);
+  tabs.forEach(function(t,j){t.addEventListener('click',function(){show(j);});});
+})();
+"""
+
+qr_body = f"""
+<section class="page-hero wrap"><h1>Your starter plan</h1><p>Your five easiest crops, one job for right now, and two things to cook. Pick your result if it isn\u2019t showing.</p>
+<div class="qr-tabs" role="group" aria-label="Quiz results">{''.join(f'<button type="button" aria-pressed="false">{e(r["name"])}</button>' for r in QR)}</div></section>
+<div class="wrap qr-wrap">{''.join(qr_section(r) for r in QR)}
+<div class="notice" style="margin-top:22px"><p><b>Your free sowing calendar</b> comes by email at the start of each month.</p><a class="btn" href="/shop/">See June\u2019s planners</a></div></div>
+<script>{QR_JS}</script>
+"""
+page("your-result/index.html", "Your grow your own starter plan | Plot to Plate with June",
+     "Your five easiest crops, one job for right now and two seasonal recipes, from June's free quiz.", qr_body, noindex=True)
+
+
 # ---------- Privacy ----------
 priv = f"""
 <div class="wrap"><article class="prose">

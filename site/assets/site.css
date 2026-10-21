@@ -292,3 +292,18 @@ section[id]{scroll-margin-top:72px}
 .shop-item .more{padding:10px 12px;min-height:44px}
 .crumbs a{display:inline-block;padding-block:10px;margin-block:-10px}
 .price{position:relative}
+/* Quiz result page */
+.qr-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.qr-tabs button{min-height:44px;border:1.5px solid var(--rule);background:transparent;color:var(--text);border-radius:999px;padding:8px 16px;font:600 .92rem var(--body);cursor:pointer}
+.qr-tabs button[aria-pressed=true]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.qr-wrap{max-width:760px}
+.qr{padding-block:10px}
+.qr-head{display:flex;gap:16px;align-items:center}
+.qr-head img{width:96px;height:96px;border-radius:12px;object-fit:cover;flex:none}
+.qr .kicker{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.qr h2{font-size:var(--step-3)}
+.qr h3{font-size:var(--step-1);margin:22px 0 8px}
+.qr-five{display:grid;gap:8px;padding-left:22px;margin:0}
+.qr-now{margin-top:18px;background:var(--paper);color:var(--ink);border-radius:12px;padding:14px 16px}
+.qr-recs{display:grid;gap:14px}
+.qr-rec h3{margin:0 0 4px;font-size:1.05rem}
