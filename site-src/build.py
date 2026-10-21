@@ -79,7 +79,7 @@ def page(path, title, desc, body, current=None, payhip=False, form=False, noinde
 {body}
 </main>
 <footer class="site-foot"><div class="wrap">
-<nav class="foot-links" aria-label="Footer"><a href="{quiz('footer','quiz')}">Free quiz</a><a href="/this-month/">This month</a><a href="/shop/">Shop</a><a href="/privacy/">Privacy</a></nav>
+<nav class="foot-links" aria-label="Footer"><a href="{quiz('footer','quiz')}">Free quiz</a><a href="/this-month/">This month</a><a href="/shop/">Shop</a><a href="/test/">Gardener Level Test</a><a href="/privacy/">Privacy</a></nav>
 <div class="foot-social">{social}</div>
 <p class="foot-note">Questions? Email <a href="mailto:{SITE['contact_email']}">{SITE['contact_email']}</a>. <a href="/privacy/#seller">Seller details</a>. Growing advice follows general UK guidance; check your seed packets for your variety. &copy; {date.today().year} {e(SITE['name'])}</p>
 </div></footer>
@@ -358,6 +358,69 @@ page("your-result/index.html", "Your grow your own starter plan | Plot to Plate 
      "Your five easiest crops, one job for right now and two seasonal recipes, from June's free quiz.", qr_body, noindex=True)
 
 
+# ---------- The Gardener Level Test ----------
+from test_svgs import SVGS
+GT = _smart(json.load(open(os.path.join(ROOT, "data/test.json"))))
+GT_FORM = "https://assets.mailerlite.com/jsonp/2722815/forms/201962470142641565/subscribe"
+gt_data = {"levels": GT["levels"], "form": GT_FORM, "svgs": SVGS,
+           "questions": [{k: q[k] for k in ("fmt", "q", "img", "alt", "options", "answer", "why") if k in q} for q in GT["questions"]]}
+gt_json = json.dumps(gt_data, ensure_ascii=False).replace("</", "<\\/")
+gt_body = f"""
+<link rel="stylesheet" href="/assets/test.css">
+<section class="page-hero wrap" style="text-align:center"><h1>The Gardener Level Test</h1><p style="margin-inline:auto">Are you a Seedling or a Head Gardener? 15 questions to find out how good a gardener you really are.</p></section>
+<div class="gt-wrap"><div id="gt" class="gt"><div class="gt-card"><p>Loading the test…</p><noscript><p>The test needs JavaScript switched on to run.</p></noscript></div></div></div>
+<script type="application/json" id="gt-data">{gt_json}</script>
+<script src="/assets/test.js" defer></script>
+"""
+page("test/index.html", "The Gardener Level Test: how good a gardener are you? | Plot to Plate with June",
+     "15 quick questions, from easy to tricky. Find out if you're a Seedling, Sprout, Green Fingers or Head Gardener.", gt_body, current="/test/")
+
+TICK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+CROSS_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>'
+
+
+def bd_item(n, q):
+    ans = q["options"][q["answer"]]["label"]
+    if q["fmt"] == "tt" and q["q"].startswith("Which courgette flower"):
+        ans = "The male flower, on a thin stalk"
+    return (f'<li class="bd-item" data-n="{n}"><p class="bd-n"><span class="bd-ico"></span>Question {n + 1}</p>'
+            f'<h3>{e(q["q"])}</h3><p class="bd-ans">Answer: {e(ans)}</p><p>{e(q["why"])}</p>'
+            f'<p class="bd-tip"><b>June’s tip:</b> {e(q["tip"])}</p></li>')
+
+
+BD_JS = r"""
+(function(){
+  var a=(new URLSearchParams(location.search).get('a')||'').replace(/[^01]/g,'');
+  var LV=%s, T='%s', X='%s';
+  if(a.length!==15){document.getElementById('bd-sum').hidden=true;return;}
+  var s=a.split('').filter(function(c){return c==='1';}).length, lv=0;
+  LV.forEach(function(l,n){if(s>=l.min&&s<=l.max)lv=n;});
+  document.getElementById('bd-level').textContent=LV[lv].name;
+  document.getElementById('bd-score').textContent=s+' out of 15';
+  [].forEach.call(document.querySelectorAll('.bd-item'),function(li){
+    var ok=a.charAt(+li.dataset.n)==='1'; li.classList.add(ok?'ok':'no');
+    li.querySelector('.bd-ico').innerHTML=ok?T:X;
+    li.querySelector('.bd-n').insertAdjacentText('beforeend',ok?' · you got this':' · one to learn');
+  });
+  var miss=document.querySelector('.bd-item.no'); if(miss) document.getElementById('bd-jump').href='#'+(miss.id='q'+miss.dataset.n); else document.getElementById('bd-jump').hidden=true;
+})();
+""" % (json.dumps([{"name": l["name"], "min": l["min"], "max": l["max"]} for l in GT["levels"]]), TICK_SVG, CROSS_SVG)
+
+bd_body = f"""
+<link rel="stylesheet" href="/assets/test.css">
+<section class="page-hero wrap" style="max-width:720px"><h1>Your test breakdown</h1><p>Every answer explained, with a tip from me for each one.</p></section>
+<div class="bd">
+<div class="bd-sum" id="bd-sum"><div><p class="gt-kicker">Your level</p><h2 id="bd-level"></h2><p id="bd-score"></p><p style="margin-top:6px"><a id="bd-jump" href="#">Jump to the first one you missed</a></p></div></div>
+<ol class="bd-list">{''.join(bd_item(n, q) for n, q in enumerate(GT["questions"]))}</ol>
+<div class="notice bd-next"><p><b>Think you can do better?</b> Have another go, or send it to a friend and see who really has the green fingers.</p><a class="btn" href="/test/">Take the test again</a></div>
+<div class="notice bd-next"><p><b>Want to know what to sow this month?</b> Have a look at this month’s jobs, crops and recipe.</p><a class="btn-outline" href="/this-month/">This month in the garden</a></div>
+</div>
+<script>{BD_JS}</script>
+"""
+page("test/breakdown/index.html", "Your Gardener Level Test breakdown | Plot to Plate with June",
+     "Every answer from the Gardener Level Test explained, with a tip for each.", bd_body, noindex=True)
+
+
 # ---------- Privacy ----------
 priv = f"""
 <div class="wrap"><article class="prose">
@@ -390,7 +453,7 @@ page("404.html", "Page not found | Plot to Plate with June", "Page not found.", 
 open(os.path.join(OUT, "_redirects"), "w").write(
     f"/calendar {SITE['calendar_file']} 302\n/quiz {SITE['quiz_url']}?utm_source=website&utm_medium=short_link&utm_campaign=quiz 302\n")
 open(os.path.join(OUT, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nSitemap: {SITE['domain']}/sitemap.xml\n")
-urls = ["/", "/this-month/", "/shop/"] + [f"/shop/{x['id']}/" for x in PRODUCTS if x.get("page")] + ["/privacy/"]
+urls = ["/", "/this-month/", "/shop/", "/test/"] + [f"/shop/{x['id']}/" for x in PRODUCTS if x.get("page")] + ["/privacy/"]
 open(os.path.join(OUT, "sitemap.xml"), "w").write(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     "".join(f"  <url><loc>{SITE['domain']}{u}</loc><lastmod>{date.today().isoformat()}</lastmod></url>\n" for u in urls) + "</urlset>\n")
