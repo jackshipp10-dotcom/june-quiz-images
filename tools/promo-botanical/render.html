@@ -1,0 +1,13 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>@font-face{font-family:"Lora";font-style:normal;font-weight:400 700;src:url(Lora-Variable.ttf);}@font-face{font-family:"Lora";font-style:italic;font-weight:400 700;src:url(Lora-Italic-Variable.ttf);}body{margin:0}</style>
+<script>const P=new URLSearchParams(location.search).get('p');document.write(`<script src="${P}/imgs.js"><\/script><script src="${P}/spec.js"><\/script>`);</script>
+</head><body><canvas id="c" width="1920" height="1080"></canvas><canvas id="o" width="1080" height="1920"></canvas>
+<script src="sound.js"></script><script src="block0.js"></script><script src="bengine.js"></script><script src="score.js"></script>
+<script>
+window.ready=(async()=>{await Promise.all(['400 40px "Lora"','700 40px "Lora"','italic 400 40px "Lora"','italic 700 40px "Lora"'].map(f=>document.fonts.load(f)));if(window.IMGS)await loadImgs();})();
+const C=document.getElementById('c'),X=C.getContext('2d',{willReadFrequently:true});
+window.seek=(t)=>{X.setTransform(1,0,0,1,0,0);X.clearRect(0,0,C.width,C.height);X.setTransform(C.width/1280,0,0,C.height/720,0,0);explainer(X,1280,720,t);};
+window.frame=(t)=>{seek(t);return C.toDataURL('image/jpeg',0.93);};
+window.ov=()=>{const o=document.getElementById('o'),x=o.getContext('2d');x.clearRect(0,0,1080,1920);overlay(x);return o.toDataURL('image/png');};
+window.audio=async()=>{const r=await SOUND.renderOffline(window.scoreSound,15,48000,{voiceover:false});const b=new Uint8Array(r.inter.buffer);let s='';for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return {b64:btoa(s),peak:r.peak};};
+</script></body></html>
