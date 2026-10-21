@@ -160,6 +160,7 @@ home = f"""
   {packets('home')}
   <p class="quiz-go"><a class="btn" href="{quiz('home','quiz_button')}">Take the free quiz</a></p>
 </section>
+<div class="wrap"><div class="notice home-test"><p><b>How good a gardener are you, really?</b> Take my Gardener Level Test: 15 questions, from easy to tricky. Are you a Seedling or a Head Gardener?</p><a class="btn btn-paper" href="/test/?utm_source=website&amp;utm_medium=home&amp;utm_campaign=gardener_test">Take the test</a></div></div>
 <div class="wrap home-cols">
   <section class="section" aria-labelledby="month-h">
     <div class="section-head"><h2 id="month-h">This month</h2><a class="btn-outline" href="/this-month/">All of {MONTH['month']}</a></div>
