@@ -84,6 +84,7 @@ def page(path, title, desc, body, current=None, payhip=False, form=False, noinde
 <p class="foot-note">Questions? Email <a href="mailto:{SITE['contact_email']}">{SITE['contact_email']}</a>. <a href="/privacy/#seller">Seller details</a>. Growing advice follows general UK guidance; check your seed packets for your variety. &copy; {date.today().year} {e(SITE['name'])}</p>
 </div></footer>
 {scripts}
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{"token": "06a9b402e3d24d34bc5dadba117352fe"}}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
 """
