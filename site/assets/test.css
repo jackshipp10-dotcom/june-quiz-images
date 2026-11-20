@@ -147,3 +147,7 @@
 .bd-tip{margin-top:6px;padding-top:8px;border-top:1px dashed #CFC4A8}
 .bd-tip b{color:#6B5A3E}
 .bd-next{margin-top:22px}
+/* Monthly bonus test (subscribers) */
+.gt-june{max-width:42ch;margin:0 auto;background:#EDE5CF;border-radius:12px;padding:12px 14px;text-align:left;font-size:.98rem;line-height:1.45}
+.gt-sig{display:block;font-family:var(--display);font-weight:700;margin-top:4px}
+.gt-res .gt-share .btn{text-decoration:none}

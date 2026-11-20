@@ -2,7 +2,8 @@
 (function () {
   'use strict';
   var D = JSON.parse(document.getElementById('gt-data').textContent);
-  var Q = D.questions, LV = D.levels, FORM = D.form;
+  var Q = D.questions, LV = D.levels, FORM = D.form, B = D.bonus || null, N = Q.length;
+  var BEST = B ? 'gt-best-' + B.id : 'gt-best';
   var root = document.getElementById('gt');
   var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var store = {
@@ -47,6 +48,7 @@
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function level(score) { for (var n = 0; n < LV.length; n++) if (score >= LV[n].min && score <= LV[n].max) return n; return 0; }
+  function src(f) { return f.charAt(0) === '/' ? f : '/img/test/' + f; }
   function score() { return answers.reduce(function (a, b) { return a + b; }, 0); }
   var TICK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var CROSS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>';
@@ -74,15 +76,16 @@
 
   /* ---------- intro ---------- */
   function intro() {
-    var best = parseInt(store.get('gt-best'), 10);
+    var best = parseInt(store.get(BEST), 10);
     var el = h('div', { class: 'gt-card gt-intro' });
     el.innerHTML =
-      '<p class="gt-kicker">15 questions &middot; about 3 minutes</p>' +
+      (B ? '<p class="gt-kicker">' + esc(B.kicker) + '</p><h2>' + esc(B.title) + '</h2><p>' + esc(B.intro) + '</p>'
+        : '<p class="gt-kicker">15 questions &middot; about 3 minutes</p>' +
       '<h2>How good a gardener are you, really?</h2>' +
-      '<p>It starts easy and gets harder. Photos, myths and a couple of curveballs. Can you get all 15?</p>' +
+      '<p>It starts easy and gets harder. Photos, myths and a couple of curveballs. Can you get all 15?</p>') +
       '<ol class="gt-ladder">' + LV.map(function (l, n) { return '<li><span class="gt-lv-ico" data-lv="' + n + '"></span><b>' + esc(l.name) + '</b><span>' + l.min + ' to ' + l.max + '</span></li>'; }).join('') + '</ol>' +
-      (best >= 0 ? '<p class="gt-best">Your best so far: <b>' + best + '/15</b>. Beat it.</p>' : '');
-    var go = h('button', { type: 'button', class: 'btn gt-go' }, 'Start the test');
+      (best >= 0 ? '<p class="gt-best">Your best so far: <b>' + best + '/' + N + '</b>. Beat it.</p>' : '');
+    var go = h('button', { type: 'button', class: 'btn gt-go' }, B ? 'Start' : 'Start the test');
     go.addEventListener('click', function () { audio(); sfx.next(); i = 0; answers = []; question(); });
     el.appendChild(go);
     el.querySelectorAll('.gt-lv-ico').forEach(function (s) { s.innerHTML = badgeSvg(+s.dataset.lv); });
@@ -101,7 +104,7 @@
 
   function optInner(o, fmt) {
     var media = o.svg ? '<span class="gt-media gt-svg">' + D.svgs[o.svg] + '</span>'
-      : o.img ? '<span class="gt-media"><img src="/img/test/' + o.img + '" alt="" width="360" height="360" decoding="async"></span>' : '';
+      : o.img ? '<span class="gt-media"><img src="' + src(o.img) + '" alt="" width="360" height="360" decoding="async"></span>' : '';
     var icon = fmt === 'mf' ? (o.label === 'Myth' ? '<span class="gt-ico" aria-hidden="true">?</span>' : '<span class="gt-ico" aria-hidden="true">!</span>')
       : fmt === 'ff' ? (o.label === 'Friend' ? '<span class="gt-ico" aria-hidden="true">&#9829;</span>' : '<span class="gt-ico" aria-hidden="true">&#9888;</span>') : '';
     return media + '<span class="gt-label">' + icon + esc(o.label) + '</span><span class="gt-mark" aria-hidden="true"></span>';
@@ -119,7 +122,7 @@
     var tag = { tt: 'This or that', ff: 'Friend or foe', mf: 'Myth or fact', grid: 'Pick one', odd: 'Odd one out', mc: 'Pick one' }[q.fmt];
     el.appendChild(h('p', { class: 'gt-tag' }, tag));
     el.appendChild(h('h2', { class: 'gt-qtext', id: 'gt-qt' }, esc(q.q)));
-    if (q.img) el.appendChild(h('figure', { class: 'gt-photo' }, '<img src="/img/test/' + q.img + '" alt="' + esc(q.alt || '') + '" width="720" height="720">'));
+    if (q.img) el.appendChild(h('figure', { class: 'gt-photo' }, '<img src="' + src(q.img) + '" alt="' + esc(q.alt || '') + '" width="720" height="720">'));
     var opts = h('div', { class: 'gt-opts ' + layout, role: 'group', 'aria-labelledby': 'gt-qt' });
     q.options.forEach(function (o, n) {
       var b = h('button', { type: 'button', class: 'gt-opt' + (o.svg || o.img ? ' gt-tile' : '') }, optInner(o, q.fmt));
@@ -131,7 +134,7 @@
     swap(el);
     // warm the next question's images
     var nx = Q[i + 1];
-    if (nx) [nx.img].concat(nx.options.map(function (o) { return o.img; })).forEach(function (s) { if (s) { var im = new Image(); im.src = '/img/test/' + s; } });
+    if (nx) [nx.img].concat(nx.options.map(function (o) { return o.img; })).forEach(function (s) { if (s) { var im = new Image(); im.src = src(s); } });
   }
 
   function choose(n, opts, el) {
@@ -159,8 +162,8 @@
     var last = i === Q.length - 1;
     setTimeout(function () {
       fb.innerHTML = '<div class="gt-fbin ' + (ok ? 'ok' : 'no') + '"><p class="gt-verdict">' + (ok ? TICK : CROSS) + '<b>' + head + '</b></p>' +
-        '<p>' + esc(q.why) + '</p>' + (i % 3 === 1 || !ok ? '<p class="gt-more">June’s full tip for this one is in your breakdown at the end.</p>' : '') + '</div>';
-      var nb = h('button', { type: 'button', class: 'btn gt-next' }, last ? 'See my level' : 'Next question');
+        '<p>' + esc(q.why) + '</p>' + (B && q.tip ? '<p class="gt-more"><b>June’s tip:</b> ' + esc(q.tip) + '</p>' : '') + (!B && (i % 3 === 1 || !ok) ? '<p class="gt-more">June’s full tip for this one is in your breakdown at the end.</p>' : '') + '</div>';
+      var nb = h('button', { type: 'button', class: 'btn gt-next' }, last ? (B ? 'See my score' : 'See my level') : 'Next question');
       nb.addEventListener('click', function () { sfx.next(); i++; if (last) results(); else question(); });
       fb.appendChild(nb);
       nb.focus({ preventScroll: true });
@@ -182,19 +185,21 @@
   /* ---------- results ---------- */
   function results() {
     var s = score(), lv = level(s), L = LV[lv];
-    var best = parseInt(store.get('gt-best'), 10), newBest = !(best >= s);
-    if (newBest) store.set('gt-best', String(s));
+    var best = parseInt(store.get(BEST), 10), newBest = !(best >= s);
+    if (newBest) store.set(BEST, String(s));
     var squares = answers.map(function (a) { return a ? '🟩' : '🟥'; }).join('');
     var el = h('div', { class: 'gt-card gt-res' + (RM ? '' : ' gt-anim') });
     el.innerHTML =
       '<div class="gt-seeds" aria-hidden="true"></div>' +
-      '<p class="gt-kicker">Your gardener level</p>' +
+      '<p class="gt-kicker">' + (B ? esc(B.result_kicker) : 'Your gardener level') + '</p>' +
       '<div class="gt-badge" aria-hidden="true">' + badgeSvg(lv) + '</div>' +
       '<h2 class="gt-level">' + esc(L.name) + '</h2>' +
-      '<p class="gt-score"><span class="gt-num">0</span>/15' + (newBest && best >= 0 ? ' <span class="gt-pb">New best</span>' : '') + '</p>' +
-      '<p class="gt-sq" aria-label="' + s + ' right out of 15">' + answers.map(function (a) { return '<i class="' + (a ? 'ok' : 'no') + '"></i>'; }).join('') + '</p>' +
+      '<p class="gt-score"><span class="gt-num">0</span>/' + N + (newBest && best >= 0 ? ' <span class="gt-pb">New best</span>' : '') + '</p>' +
+      '<p class="gt-sq" aria-label="' + s + ' right out of ' + N + '">' + answers.map(function (a) { return '<i class="' + (a ? 'ok' : 'no') + '"></i>'; }).join('') + '</p>' +
       '<p class="gt-line">' + esc(L.line) + '</p>' +
-      '<div class="gt-after">' +
+      (B ? '<div class="gt-after"><p class="gt-june">' + esc(B.june) + ' <span class="gt-sig">June x</span></p>' +
+        '<div class="gt-share"><a class="btn" href="' + esc(B.link) + '">' + esc(B.link_text) + '</a><button type="button" class="btn-outline gt-again">Try again</button></div></div>' : '') +
+      (B ? '' : '<div class="gt-after">' +
       '<form class="gt-form" novalidate>' +
       '<h3>Get your full breakdown</h3>' +
       '<p>Every answer explained, plus June’s tip for each one, sent straight to your inbox.</p>' +
@@ -206,7 +211,7 @@
       '<p class="gt-small">Unsubscribe any time. <a href="/privacy/">Privacy</a></p>' +
       '</form>' +
       '<div class="gt-share"><button type="button" class="btn-outline gt-sharebtn">Challenge a friend</button><button type="button" class="btn-outline gt-again">Try again</button></div>' +
-      '</div>';
+      '</div>');
     swap(el);
     sfx.results(); buzz(20);
 
@@ -223,6 +228,9 @@
       el.addEventListener('click', function skip(ev) { if (!el.classList.contains('gt-done') && !ev.target.closest('input,button,a,label')) finish(); });
     }
 
+    el.querySelector('.gt-again').addEventListener('click', function () { sfx.next(); i = 0; answers = []; question(); });
+    if (B) return;
+
     // share
     el.querySelector('.gt-sharebtn').addEventListener('click', function (ev) {
       var text = 'I got ' + s + '/15 on June’s Gardener Level Test: ' + L.name + '.\n' + squares + '\nThink you can beat me?';
@@ -231,7 +239,6 @@
       if (navigator.share) navigator.share({ title: 'The Gardener Level Test', text: text, url: url }).catch(function () {});
       else if (navigator.clipboard) navigator.clipboard.writeText(text + '\n' + url).then(function () { b.textContent = 'Copied. Paste it anywhere'; });
     });
-    el.querySelector('.gt-again').addEventListener('click', function () { sfx.next(); i = 0; answers = []; question(); });
 
     // email
     var f = el.querySelector('.gt-form');

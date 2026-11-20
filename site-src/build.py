@@ -381,6 +381,28 @@ gt_body = f"""
 page("test/index.html", "The Gardener Level Test: how good a gardener are you? | Plot to Plate with June",
      "15 quick questions, from easy to tricky. Find out if you're a Seedling, Sprout, Green Fingers or Head Gardener.", gt_body, current="/test/")
 
+# ---------- Monthly bonus tests (email subscribers only) ----------
+# One file per month in data/bonus/YYYY-MM.json, built to /test/<slug>/.
+# noindex, never in the nav, footer or sitemap, no email form. Linked only from the monthly email.
+import glob as _glob
+BONUS_PAGES = []
+for _bf in sorted(_glob.glob(os.path.join(ROOT, "data/bonus/*.json"))):
+    BX = _smart(json.load(open(_bf)))
+    bx_data = {"levels": BX["levels"], "form": "", "svgs": SVGS,
+               "bonus": {k: BX[k] for k in ("id", "result_kicker", "june", "link", "link_text")} | {"kicker": BX["card_kicker"], "title": BX["intro_title"], "intro": BX["intro"]},
+               "questions": [{k: q[k] for k in ("fmt", "q", "img", "alt", "options", "answer", "why", "tip") if k in q} for q in BX["questions"]]}
+    bx_json = json.dumps(bx_data, ensure_ascii=False).replace("</", "<\\/")
+    bx_body = f"""
+<link rel="stylesheet" href="/assets/test.css">
+<section class="page-hero wrap" style="text-align:center"><p class="gt-kicker" style="color:inherit;opacity:.8">{e(BX['kicker'])}</p><h1>{e(BX['heading'])}</h1><p style="margin-inline:auto">{e(BX['lede'])}</p></section>
+<div class="gt-wrap"><div id="gt" class="gt"><div class="gt-card"><p>Loading the test…</p><noscript><p>The test needs JavaScript switched on to run.</p></noscript></div></div></div>
+<script type="application/json" id="gt-data">{bx_json}</script>
+<script src="/assets/test.js" defer></script>
+"""
+    page(f"test/{BX['slug']}/index.html", f"{BX['title']} | Plot to Plate with June", BX["desc"], bx_body, noindex=True)
+    BONUS_PAGES.append(BX["slug"])
+
+
 TICK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 CROSS_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>'
 
